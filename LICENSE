@@ -1,3 +1,15 @@
+Python library for Flite keg sensor
+
+**Hardware Documentation
+Pressure Temperature Sensor I2C Documentation - https://sensing.honeywell.com/i2c-comms-digital-output-pressure-sensors-tn-008201-3-en-final-30may12.pdf
+Distance Sensor API Documentation - https://www.st.com/en/embedded-software/stsw-img005.html
+
+**This library was developed using the below library developed by Adafruit
+Adafruit VL53L0X Documentation - https://github.com/adafruit/Adafruit_CircuitPython_VL53L0X
+
+Author: DJMarlow - https://github.com/DJMarlow
+Date: 2020-8-26
+
 MIT License
 
 Copyright (c) 2020 Derrick Marlow
