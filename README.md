@@ -3,4 +3,4 @@
 
 **Flite Sensor Python Library**
 ----
-[Arduino Library Documentation](https://gist.github.com/DJMarlow/8b56c0b791cbcbb7c4312fbd56bc55f3)
+[Python Library Documentation](https://gist.github.com/DJMarlow/3b5beb512ad97154f8eaf5b2f415bb3e)
