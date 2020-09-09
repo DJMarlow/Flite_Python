@@ -108,7 +108,7 @@ class FliteSensor():
         else:
             file = open(self.fileDistanceLow)
             d = file.read()
-            return d
+            return float(d)
 
     def setCalibrationLevelLow(self, l):
         file = open(self.fileLevelLow, 'w')
@@ -124,7 +124,7 @@ class FliteSensor():
             file = open(self.fileLevelLow)
             l = file.read()
             file.close()
-            return l
+            return float(l)
 
     def calibrateHigh(self, l):
         #Store the distance value in file
@@ -145,7 +145,7 @@ class FliteSensor():
         else:
             file = open(self.fileDistanceHigh)
             d = file.read()
-            return d
+            return float(d)
 
     def setCalibrationLevelHigh(self, l):
         file = open(self.fileLevelHigh, 'w')
@@ -161,7 +161,7 @@ class FliteSensor():
             file = open(self.fileLevelHigh)
             l = file.read()
             file.close()
-            return l
+            return float(l)
 
     def calibrateZeroPSI(self):
         self.setCalibrationZeroPSI(self.getRawPressure())
@@ -179,7 +179,7 @@ class FliteSensor():
         else:
             file = open(self.filePSIZero)
             p = file.read()
-            return p
+            return float(p)
 
     def getRawPressTemp(self, addr):
         with SMBus(1) as bus:
