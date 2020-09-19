@@ -74,19 +74,25 @@ class FliteSensor():
     
     def getLevel(self):
         l = 0.0
+        d = self.getTOFDistance()
+        
+        #If d > 1000 discard reading
+        if d < 1000:
+            l = self.level
+        else:
+            m =  (self.getCalibrationLevelHigh() - self.getCalibrationLevelLow()) / (self.getCalibrationDistanceHigh() - self.getCalibrationDistanceLow())
+            b = self.getCalibrationLevelHigh() - (m * self.getCalibrationDistanceHigh())
+            l = (m * d) + b
 
-        m =  (self.getCalibrationLevelHigh() - self.getCalibrationLevelLow()) / (self.getCalibrationDistanceHigh() - self.getCalibrationDistanceLow())
-        b = self.getCalibrationLevelHigh() - (m * self.getCalibrationDistanceHigh())
-        l = (m * self.getTOFDistance()) + b
+            #Limit level reading from 0 - 5
+            if l < 0.0:
+                l = 0.0
 
-        #Limit level reading from 0 - 5
-        if l < 0.0:
-            l = 0.0
+            if l > 5.0:
+                l = 5.0
 
-        if l > 5.0:
-            l = 5.0
-
-        self.level = l
+            self.level = l
+        
         return l
 
     def calibrateLow(self, l):
