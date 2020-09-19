@@ -46,6 +46,9 @@ class FliteSensor():
         self.fileDistanceHigh = fileDirectory + "distanceHigh.txt"
         self.fileLevelHigh = fileDirectory + "levelHigh.txt"
         self.filePSIZero = fileDirectory + "pressureZero.txt"
+        self.level = 0.0
+        self.press = 0.0
+        self.temp = 0
 
         if self.color == "BLACK":
             self.VL530X_Address = 0x30
