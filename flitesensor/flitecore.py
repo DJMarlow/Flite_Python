@@ -203,7 +203,7 @@ class FliteSensor():
 
         self.status =  (bytes[0] & 0xFF00) >> 6
         self.press = ((bytes[0] & 0x00FF) << 8) + bytes[1]
-        self.temp = (((bytes[2] & 0x00FF) << 8) + ((bytes[3] & 0xFF00) >> 5))
+        self.temp = (((bytes[2] & 0x00FF) << 8) + bytes[3]) >> 5
 
     def convertPressure(self, p, oMin, oMax, pMin, pMax):
         pNew = ((p * 1.0) - oMin) * (pMax - pMin) / (oMax - oMin) + pMin
