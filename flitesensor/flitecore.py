@@ -46,6 +46,7 @@ class FliteSensor():
         self.fileDistanceHigh = fileDirectory + "distanceHigh.txt"
         self.fileLevelHigh = fileDirectory + "levelHigh.txt"
         self.filePSIZero = fileDirectory + "pressureZero.txt"
+        self.fileTempOffset = fileDirectory + "temperatureOffset.txt"
         self.level = 0.0
         self.press = 0.0
         self.temp = 0
@@ -171,6 +172,21 @@ class FliteSensor():
             l = file.read()
             file.close()
             return float(l)
+        
+    def setTemperatureOffset(self, t):
+        file = open(self.fileTempOffset, 'w')
+        file.write(str(t))
+        file.close()
+
+    def getTemperatureOffset(self):
+        #If t is null initialize temperature at 0
+        if os.stat(self.fileTempOffset).st_size == 0:
+            t = 0.0
+            return t
+        else:
+            file = open(self.fileTempOffset)
+            t = file.read()
+            return float(t)
 
     def calibrateZeroPSI(self):
         self.setCalibrationZeroPSI(self.getRawPressure())
@@ -228,7 +244,8 @@ class FliteSensor():
     def getTemperature(self):
         self.getRawPressTemp(self.HSC_Address)
         t = self.convertTemp(self.temp)
-        t = (t * 9/5) + 32
+        #t = (t * 9/5) + 32
+        t = ((t * 9/5) + 32) - self.getTemperatureOffset()
         self.temp = t
         return t
         
